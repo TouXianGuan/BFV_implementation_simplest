@@ -36,14 +36,14 @@ int main(int argc, char *argv[]) {
 	printf("多项式三\t");
 	poly_print(poly3, 1);
 	
-	PolyPairs* Pk = pk(16, 874);
-	printf("公钥\t");
-	polypairs_print(Pk, 1);	
+	Poly* coeDiv = poly_mod_coefficient_Div(poly1, 37, 24);
+	printf("多项式系数除法 \t");
+	poly_print(coeDiv, 1);	
 	
 	poly_free(poly1);
 	poly_free(poly2);
 	poly_free(poly3);
-	polypairs_free(Pk);
+	poly_free(coeDiv);
 	
 	return 0;
 }
