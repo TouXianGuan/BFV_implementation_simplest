@@ -1,5 +1,5 @@
 [Project]
-FileName=BGVimplementation.dev
+FileName=BFV_implementation_simplest.dev
 Name=BFV_implementation_simplest
 Type=1
 Ver=2
@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=1
 CompilerSettings=0000000000000000001000000
-UnitCount=7
+UnitCount=9
 
 [VersionInfo]
 Major=1
@@ -112,6 +112,26 @@ BuildCmd=
 
 [Unit7]
 FileName=PolyPairs.c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit8]
+FileName=Enc.c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit9]
+FileName=Enc.h
 CompileCpp=0
 Folder=
 Compile=1
