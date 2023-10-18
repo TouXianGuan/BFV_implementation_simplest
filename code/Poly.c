@@ -211,8 +211,8 @@ Poly* poly_mod_coefficient(Poly *poly, int t) {
 	
 	for (int i=0; i<=degree; i++) {
 		int coefficient = poly->terms[i].coefficient % t;
-		if (coefficient > t/2) coefficient -= t;
-		else if(coefficient <= t / 2 * (-1))	coefficient += t;
+		if (coefficient > (t/2.0)) coefficient -= t;
+		else if(coefficient <= (t/2.0) * (-1))	coefficient += t;
 		poly_term(poly3, coefficient, i);
 	}
 	return poly3;
@@ -294,6 +294,27 @@ Poly *poly_coefficient_mul(Poly *poly, int a) {
 
 Poly *poly_mod_coefficient_mul(Poly *poly, int a, int t) {
 	Poly* poly3 = poly_coefficient_mul(poly, a);
+	poly3 = poly_mod_coefficient(poly3, t);
+	return poly3;
+}
+
+Poly *poly_rounding_div(Poly *poly, double a) {
+	int degree = poly->degree;
+	Poly* poly3 = poly_create(degree);
+	
+	for (int i=0; i<=poly->degree; i++) {
+		double tmp = poly->terms[i].coefficient / a;
+		int coefficient = tmp > 0 ? (int)(tmp + 0.5) : (int)(tmp - 0.5);
+		
+		printf("i=%d c=%d\n", i, coefficient);
+		poly_term(poly3, coefficient, i);
+	}
+
+	return poly3;
+}
+
+Poly *poly_mod_rounding_div(Poly *poly, double a, int t) {
+	Poly* poly3 = poly_rounding_div(poly, a);
 	poly3 = poly_mod_coefficient(poly3, t);
 	return poly3;
 }
