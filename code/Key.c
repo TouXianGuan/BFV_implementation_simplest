@@ -62,12 +62,13 @@ Poly* pk1(Poly* a, int d, int q) {
 	return poly2;
 }
 
-PolyPairs* pk(int d, int q) {
-	Poly* a = gen_a(d, q);
+PolyPairs* pk(Poly* s, int d, int q) {
+	Poly* a = gen_a(d-1, q);
+	printf("a\t\t");
 	poly_print(a, 1);
-	Poly* s = sk(d);
-	poly_print(s, 1);
-	Poly* e = poly_Gaussian(d, Gau);
+	
+	Poly* e = poly_Gaussian(d-1, Gau);
+	printf("e\t\t");
 	poly_print(e, 1);
 	
 	PolyPairs* Pk = polypairs_create(pk0(a, s, e, d, q), pk1(a, d, q));

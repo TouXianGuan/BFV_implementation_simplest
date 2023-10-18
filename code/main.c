@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include "Poly.h"
 #include "PolyPairs.h"
@@ -65,16 +66,21 @@ int main(int argc, char *argv[]) {
 	printf("∂‡œÓ Ω¡˘\t");
 	poly_print(poly6, 1);
 	
-	PolyPairs *Pk = pk(16, 874);
-	printf("pk\t");
-	polypairs_print(pk, 1); 
+	Poly* Sk = sk(15);
+	printf("sk\t\t");
+	poly_print(Sk, 1); 
+	
+	PolyPairs *Pk = pk(Sk, 16, 874);
+	printf("pk\n");
+	polypairs_print(Pk, 1); 
 	
 	poly_free(poly1);
 	poly_free(poly2);
 	poly_free(poly3);
 	poly_free(poly4);
 	poly_free(poly5);
-	polypairs_free(pk);
+	poly_free(Sk);
+	polypairs_free(Pk);
 	
 	return 0;
 }

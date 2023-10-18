@@ -14,4 +14,4 @@ Poly* pk0(Poly* a, Poly* s, Poly* e, int d, int q);
 Poly* pk1(Poly* a, int d, int q);
 
 // Éú³É¹«Ô¿
-PolyPairs* pk(int d, int q);
+PolyPairs* pk(Poly* s, int d, int q);
