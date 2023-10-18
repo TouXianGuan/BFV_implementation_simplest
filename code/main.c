@@ -5,9 +5,11 @@
 #include "PolyPairs.h"
 #include "Key.h"
 
-int c1[16] = {84, -60, -282, 186, 322, -138, 70, 52, 107, -212, -369, 447, -229, -393, -256, 42};
-int c2[16] = {-1, 1, 1, 0, -1, 0, 1, 0, 1, -1, 0, -1, -1, -1, 0, 1};
-int c3[16] = {1, 4, 0, 4, -4, 3, -1, 0, 4, 1, -6, -6, 7, 1, 1, -3};
+int c1[16] = {252, -113, -234, 110, 377, -281, -158, 26, 430, -41, -142, -83, 86, -32, -431, -285};
+int c2[8] = {3, 0, 0, 0, 0, 0, 0, 0, -3};
+int c3[16] = {4, -6, 2, -3, -3, -4, 5, 4, 4, 1, 3, -4, -1, 3, -2, -5};
+int c4[16] = {2, -2, -4, 1, -2, 2, -3, -4, 4, -1, 2, 5, 0, -4, 2, -7};
+int c5[15] = {1, 0, 0, -1, 0, -1, 0, 0, -1, 0, 0, 0, 1, 1, 1};
 int i, len;
 
 int main(int argc, char *argv[]) {
@@ -34,6 +36,22 @@ int main(int argc, char *argv[]) {
 		poly_term(poly3, c3[i], i);
 	}
 	printf("多项式三\t");
+	poly_print(poly3, 1);
+	
+	len = sizeof(c3) / sizeof(int);
+	Poly* poly3 = poly_create(len - 1);
+	for (i=0; i<len; i++) {
+		poly_term(poly3, c3[i], i);
+	}
+	printf("多项式四\t");
+	poly_print(poly3, 1);
+	
+	len = sizeof(c3) / sizeof(int);
+	Poly* poly3 = poly_create(len - 1);
+	for (i=0; i<len; i++) {
+		poly_term(poly3, c3[i], i);
+	}
+	printf("多项式五\t");
 	poly_print(poly3, 1);
 	
 	PolyPairs* Pk = pk(16, 874);
