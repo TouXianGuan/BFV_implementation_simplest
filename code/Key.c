@@ -10,8 +10,6 @@
 #include "Key.h"
 
 Poly* poly_rand(int degree, int range) {
-	srand(time(NULL) * degree * range); 
-	
 	Poly* poly1 = poly_create(degree);
 	int i;
 	for(i=0; i<=degree; i++){
@@ -23,8 +21,6 @@ Poly* poly_rand(int degree, int range) {
 }
 
 Poly* poly_Gaussian(int degree, int range) {
-	srand(time(NULL) * degree * range); 
-	
 	Poly* poly1 = poly_create(degree);
 	int i;
 	for(i=0; i<=degree; i++){

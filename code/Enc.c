@@ -36,6 +36,16 @@ Poly* ct1(PolyPairs* pk, int d, int q, Poly* e2, Poly* u) {
 	return poly2;	
 }
 
-PolyPairs ct(PolyPairs* pk, Poly* m, int d, int t, int q) {
+PolyPairs* ct(PolyPairs* pk, Poly* m, int d, int t, int q) {
+	Poly* u = sk(d);
+	poly_print(u, 1);
 	
+	Poly* e1 = poly_Gaussian(d, Gau);
+	poly_print(e1, 1);
+	Poly* e2 = poly_Gaussian(d, Gau);
+	poly_print(e2, 1);
+	
+	PolyPairs* Ct = polypairs_create(ct0(pk, m, d, t, q, e1, u), ct1(pk, d, q, e2, u));
+	
+	return Ct;
 }

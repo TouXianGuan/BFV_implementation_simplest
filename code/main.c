@@ -15,6 +15,7 @@ int c6[16] = {84, -60, -282, 186, 322, -138, 70, 52, 107, -212, -369, 447, -229,
 int i, len;
 
 int main(int argc, char *argv[]) {
+	srand(time(NULL) * 10000); 
 	
 	len = sizeof(c1) / sizeof(int);
 	Poly* poly1 = poly_create(len - 1);
@@ -64,17 +65,16 @@ int main(int argc, char *argv[]) {
 	printf("∂‡œÓ Ω¡˘\t");
 	poly_print(poly6, 1);
 	
-	PolyPairs *Pk = polypairs_create(poly1, poly6);
-	Poly* Ct1 = ct1(Pk, 16, 874, poly4, poly5);
-	printf("ct1\t");
-	poly_print(Ct1, 1);
+	PolyPairs *Pk = pk(16, 874);
+	printf("pk\t");
+	polypairs_print(pk, 1); 
 	
 	poly_free(poly1);
 	poly_free(poly2);
 	poly_free(poly3);
 	poly_free(poly4);
 	poly_free(poly5);
-	poly_free(Ct1);
+	polypairs_free(pk);
 	
 	return 0;
 }
