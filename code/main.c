@@ -6,6 +6,7 @@
 #include "PolyPairs.h"
 #include "Key.h"
 #include "Enc.h"
+#include "Dec.h"
 
 int c1[16] = {252, -113, -234, 110, 377, -281, -158, 26, 430, -41, -142, -83, 86, -32, -431, -285};
 int c2[9] = {3, 0, 0, 0, 0, 0, 0, 0, -3};
