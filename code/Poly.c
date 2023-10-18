@@ -305,15 +305,13 @@ Poly *poly_rounding_div(Poly *poly, double a) {
 	for (int i=0; i<=poly->degree; i++) {
 		double tmp = poly->terms[i].coefficient / a;
 		int coefficient = tmp > 0 ? (int)(tmp + 0.5) : (int)(tmp - 0.5);
-		
-		printf("i=%d c=%d\n", i, coefficient);
 		poly_term(poly3, coefficient, i);
 	}
 
 	return poly3;
 }
 
-Poly *poly_mod_rounding_div(Poly *poly, double a, int t) {
+Poly *poly_mod_round_div(Poly *poly, double a, int t) {
 	Poly* poly3 = poly_rounding_div(poly, a);
 	poly3 = poly_mod_coefficient(poly3, t);
 	return poly3;

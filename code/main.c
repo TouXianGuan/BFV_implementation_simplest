@@ -15,11 +15,15 @@ int c4[16] = {2, -2, -4, 1, -2, 2, -3, -4, 4, -1, 2, 5, 0, -4, 2, -7};
 int c5[15] = {1, 0, 0, -1, 0, -1, 0, 0, -1, 0, 0, 0, 1, 1, 1};
 int c6[16] = {84, -60, -282, 186, 322, -138, 70, 52, 107, -212, -369, 447, -229, -393, -256, 42};
 int c7[16] = {393, 7, -12, -2, -3, -13, 10, 9, -380, 19, -23, -32, 22, 17, -2, 13};
+int c8[] = {-1, 1, 1, 0, -1, 0, 1, 0, 1, -1, 0, -1, -1, -1, 0, 1};
+int c9[] = {42, 23, 144, -247, -258, -201, 184, 5, 115, 252, -238, -392, -249, 13, -53, 217};
+int c10[] = {380, -91, -26, -20, 68, -332, 225, 386, -330, 56, -24, 350, 270, -12, 225, 25};
 int i, len;
 
 int main(int argc, char *argv[]) {
 	srand(time(NULL) * 10000); 
 	
+	/*
 	len = sizeof(c1) / sizeof(int);
 	Poly* poly1 = poly_create(len - 1);
 	for (i=0; i<len; i++) {
@@ -75,8 +79,6 @@ int main(int argc, char *argv[]) {
 	}
 	printf("多项式七\t");
 	poly_print(poly7, 1);
-	
-	/* 
 	Poly* Sk = sk(15);
 	printf("sk\t\t");
 	poly_print(Sk, 1); 
@@ -89,20 +91,38 @@ int main(int argc, char *argv[]) {
 	PolyPairs *Ct = ct(Pk, poly2, 16, 7, 874);
 	printf("Ct\n");
 	polypairs_print(Ct, 1); 
-	printf("\n");*/
+	printf("\n");
+	*/
 	
-	Poly* mroundDiv = poly_mod_rounding_div(poly7, 128.0, 7);
-	printf("mroundDiv\t\t");
-	poly_print(mroundDiv, 1); 
+	len = sizeof(c8) / sizeof(int);
+	Poly* poly8 = poly_create(len - 1);
+	for (i=0; i<len; i++) {
+		poly_term(poly8, c8[i], i);
+	}
+	printf("多项式八\t");
+	poly_print(poly8, 1);
 	
-	poly_free(poly1);
-	poly_free(poly2);
-	poly_free(poly3);
-	poly_free(poly4);
-	poly_free(poly5);
-	poly_free(poly6);
-	poly_free(poly7);
-	poly_free(mroundDiv);
+	len = sizeof(c9) / sizeof(int);
+	Poly* poly9 = poly_create(len - 1);
+	for (i=0; i<len; i++) {
+		poly_term(poly9, c9[i], i);
+	}
+	printf("多项式九\t");
+	poly_print(poly9, 1);
+	
+	len = sizeof(c10) / sizeof(int);
+	Poly* poly10 = poly_create(len - 1);
+	for (i=0; i<len; i++) {
+		poly_term(poly10, c10[i], i);
+	}
+	printf("多项式十\t");
+	poly_print(poly10, 1);
+	
+	Poly* poly11 = poly_mul(poly10, poly8);
+	Poly* poly12 = poly_add(poly11, poly9);
+	Poly* poly13 = poly_mod_poly(poly12, 16);
+	//Poly* poly14 = poly_mod_coefficient(poly13, 874);
+	poly_print(poly13, 1); 
 	
 	return 0;
 }

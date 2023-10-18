@@ -67,4 +67,4 @@ Poly *poly_mod_coefficient_mul(Poly *poly, int a, int t);
 Poly *poly_rounding_div(Poly *poly, double a);
 
 //多项式模近似系数除法 
-Poly *poly_mod_rounding_div(Poly *poly, double a, int t);
+Poly *poly_mod_round_div(Poly *poly, double a, int t);
