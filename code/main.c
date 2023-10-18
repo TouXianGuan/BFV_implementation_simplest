@@ -7,14 +7,16 @@
 #include "Key.h"
 #include "Enc.h"
 #include "Dec.h"
+#include "Homomorphic.h"
 
 int c1[16] = {252, -113, -234, 110, 377, -281, -158, 26, 430, -41, -142, -83, 86, -32, -431, -285};
-int c2[] = {3, 0, 2, 0, 4, 0, 0, 0, -3, 0, 0, 0, 0, 0, 0, 0};
+int c2[] = {3, 0, 2, 0, 0, 0, 0, 0, -3, 0, 0, 0, 0, 0, 0, 0};
 int c3[16] = {4, -6, 2, -3,-3, -4, 5, 4, 4, 1, 3, -4, -1, 3, -2, -5};
 int c4[16] = {2, -2, -4, 1, -2, 2, -3, -4, 4, -1, 2, 5, 0, -4, 2, -7};
 int c5[15] = {1, 0, 0, -1, 0, -1, 0, 0, -1, 0, 0, 0, 1, 1, 1};
 int c6[16] = {84, -60, -282, 186, 322, -138, 70, 52, 107, -212, -369, 447, -229, -393, -256, 42};
 int c7[16] = {393, 7, -12, -2, -3, -13, 10, 9, -380, 19, -23, -32, 22, 17, -2, 13};
+int c8[] = {0, 3, 2, 1, 0};
 int i, len;
 
 int main(int argc, char *argv[]) {
@@ -76,6 +78,15 @@ int main(int argc, char *argv[]) {
 	}
 	printf("多项式七\t");
 	poly_print(poly7, 1);
+	
+	len = sizeof(c8) / sizeof(int);
+	Poly* poly8 = poly_create(len - 1);
+	for (i=0; i<len; i++) {
+		poly_term(poly8, c8[i], i);
+	}
+	printf("多项式八\t");
+	poly_print(poly8, 1);	
+	
 	Poly* Sk = sk(15);
 	printf("sk\t\t");
 	poly_print(Sk, 1); 
@@ -85,12 +96,22 @@ int main(int argc, char *argv[]) {
 	polypairs_print(Pk, 1); 
 	printf("\n");
 	
-	PolyPairs *Ct = ct(Pk, poly2, 16, 7, 896);
-	printf("Ct\n");
-	polypairs_print(Ct, 1); 
+	PolyPairs *Cta = ct(Pk, poly2, 16, 7, 896);
+	printf("Cta\n");
+	polypairs_print(Cta, 1); 
 	printf("\n");
 	
-	Poly* M = m_dec(Ct, Sk, 16, 7, 896);
+	PolyPairs *Ctb = ct(Pk, poly8, 16, 7, 896);
+	printf("Ctb\n");
+	polypairs_print(Ctb, 1); 
+	printf("\n");
+	
+	PolyPairs* a_add_b = homo_add(Cta, Ctb, 16, 896);
+	printf("a_add_b\n");
+	polypairs_print(a_add_b, 1); 
+	printf("\n");
+	
+	Poly* M = m_dec(a_add_b, Sk, 16, 7, 896);
 	printf("M\t\t");
 	poly_print(M, 1);
 	
