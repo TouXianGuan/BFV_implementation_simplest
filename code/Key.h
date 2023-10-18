@@ -1,6 +1,9 @@
 // 均匀生成随机多项式 
 Poly* poly_rand(int degree, int range);
 
+//根据离散高斯分布生成多项式 
+Poly* poly_Gaussian(int degree, int range);
+
 // 生成多项式a 
 Poly* gen_a(int degree, int range);
 

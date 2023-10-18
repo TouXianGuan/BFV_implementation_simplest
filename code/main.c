@@ -73,6 +73,12 @@ int main(int argc, char *argv[]) {
 	PolyPairs *Pk = pk(Sk, 16, 874);
 	printf("pk\n");
 	polypairs_print(Pk, 1); 
+	printf("\n");
+	
+	PolyPairs *Ct = ct(Pk, poly2, 16, 7, 874);
+	printf("Ct\n");
+	polypairs_print(Ct, 1); 
+	printf("\n");
 	
 	poly_free(poly1);
 	poly_free(poly2);
@@ -81,6 +87,7 @@ int main(int argc, char *argv[]) {
 	poly_free(poly5);
 	poly_free(Sk);
 	polypairs_free(Pk);
+	polypairs_free(Ct);
 	
 	return 0;
 }
