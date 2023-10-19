@@ -53,12 +53,17 @@ Poly* pk0(Poly* a, Poly* s, Poly* e, int d, int q)
 	//-a*s+e
 	Poly *poly3 = poly_mod_add(poly2, e, d, q);
 	
+	poly_free(poly1);
+	poly_free(poly2);
+	
 	return poly3;
 }
 
 Poly* pk1(Poly* a, int d, int q) {
 	Poly *poly1 = poly_mod_poly(a, d);
 	Poly *poly2 = poly_mod_coefficient(poly1, q);
+	
+	poly_free(poly1);
 	
 	return poly2;
 }
@@ -75,6 +80,9 @@ PolyArray* pub_key(Poly* s, int d, int q) {
 	PolyArray* pk = polyarray_create();
 	polyarray_poly(pk, pk0(a, s, e, d, q), 0);
 	polyarray_poly(pk, pk1(a, d, q), 1);
+	
+	poly_free(a);
+	poly_free(e);
 	
 	return pk;
 }

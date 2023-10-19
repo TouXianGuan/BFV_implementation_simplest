@@ -96,5 +96,9 @@ int main(int argc, char *argv[]) {
 	printf("¹«Ô¿\n");
 	polyarray_print(pk, 1);	
 	
+	PolyArray* Ct = ct(pk, poly2, 16, 7, 896);
+	printf("ÃÜÎÄ\n");
+	polyarray_print(Ct, 1);	
+	
 	return 0;
 }
