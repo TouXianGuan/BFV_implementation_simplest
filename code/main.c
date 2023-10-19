@@ -100,5 +100,9 @@ int main(int argc, char *argv[]) {
 	printf("ÃÜÎÄ\n");
 	polyarray_print(Ct, 1);	
 	
+	Poly* M = m_dec(Ct, sk, 16, 7, 896);
+	printf("½âÃÜ\t\t");
+	poly_print(M, 1);
+	
 	return 0;
 }
