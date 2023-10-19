@@ -90,9 +90,22 @@ int main(int argc, char *argv[]) {
 	
 	PolyArray* pa = polyarray_create();
 	polyarray_poly(pa, poly1, 0);
-	polyarray_poly(pa, poly2, 1);
+	polyarray_poly(pa, poly2, 3);
 	polyarray_print(pa, 1);
+	putchar('\n');
+	
+	PolyArray* pb = polyarray_create();
+	polyarray_poly(pb, poly3, 0);
+	polyarray_poly(pb, poly4, 4);
+	polyarray_print(pb, 1);
+	putchar('\n');
+	
+	PolyArray* pc = polyarray_mul(pa, pb, 16, 874);
+	polyarray_print(pc, 1);
+	
+	
 	polyarray_free(pa);
+	polyarray_free(pb);
 	
 	return 0;
 }
