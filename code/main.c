@@ -100,7 +100,7 @@ int main(int argc, char *argv[]) {
 	polyarray_print(pb, 1);
 	putchar('\n');
 	
-	PolyArray* pc = polyarray_mul(pa, pb, 16, 874);
+	PolyArray* pc = polyarray_sub(pa, pb, 16, 874);
 	polyarray_print(pc, 1);
 	
 	
