@@ -8,7 +8,7 @@ Poly* poly_Gaussian(int degree, int range);
 Poly* gen_a(int degree, int range);
 
 // 生成私钥 
-Poly* sk(int degree);
+Poly* pri_key(int degree);
 
 // 生成公钥pk的第0项 
 Poly* pk0(Poly* a, Poly* s, Poly* e, int d, int q);
@@ -17,4 +17,4 @@ Poly* pk0(Poly* a, Poly* s, Poly* e, int d, int q);
 Poly* pk1(Poly* a, int d, int q);
 
 // 生成公钥
-PolyPairs* pk(Poly* s, int d, int q);
+PolyArray* pub_key(Poly* s, int d, int q);

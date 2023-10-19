@@ -7,6 +7,7 @@
 
 #include "Poly.h"
 #include "PolyPairs.h"
+#include "PolyArray.h"
 #include "Key.h"
 #include "Enc.h"
 
@@ -37,7 +38,7 @@ Poly* ct1(PolyPairs* pk, int d, int q, Poly* e2, Poly* u) {
 }
 
 PolyPairs* ct(PolyPairs* pk, Poly* m, int d, int t, int q) {
-	Poly* u = sk(d);
+	Poly* u = poly_rand(d-1, 3);
 	printf("u\t\t");
 	poly_print(u, 1);
 	

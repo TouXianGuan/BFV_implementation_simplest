@@ -7,6 +7,7 @@
 
 #include "Poly.h"
 #include "PolyPairs.h"
+#include "PolyArray.h"
 #include "Key.h"
 
 Poly* poly_rand(int degree, int range) {
@@ -33,7 +34,7 @@ Poly* poly_Gaussian(int degree, int range) {
 	return poly1;
 }
 
-Poly* sk(int degree) {	
+Poly* pri_key(int degree) {	
 	return poly_rand(degree, 3);
 }
 
@@ -62,7 +63,7 @@ Poly* pk1(Poly* a, int d, int q) {
 	return poly2;
 }
 
-PolyPairs* pk(Poly* s, int d, int q) {
+PolyArray* pub_key(Poly* s, int d, int q) {
 	Poly* a = gen_a(d-1, q);
 	printf("a\t\t");
 	poly_print(a, 1);
@@ -71,7 +72,9 @@ PolyPairs* pk(Poly* s, int d, int q) {
 	printf("e\t\t");
 	poly_print(e, 1);
 	
-	PolyPairs* Pk = polypairs_create(pk0(a, s, e, d, q), pk1(a, d, q));
+	PolyArray* pk = polyarray_create();
+	polyarray_poly(pk, pk0(a, s, e, d, q), 0);
+	polyarray_poly(pk, pk1(a, d, q), 1);
 	
-	return Pk;
+	return pk;
 }

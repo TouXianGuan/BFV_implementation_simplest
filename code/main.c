@@ -88,24 +88,13 @@ int main(int argc, char *argv[]) {
 	printf("多项式八\t");
 	poly_print(poly8, 1);	
 	
-	PolyArray* pa = polyarray_create();
-	polyarray_poly(pa, poly1, 0);
-	polyarray_poly(pa, poly2, 3);
-	polyarray_print(pa, 1);
-	putchar('\n');
+	Poly *sk = pri_key(16);
+	printf("私钥\t");
+	poly_print(sk, 1);
 	
-	PolyArray* pb = polyarray_create();
-	polyarray_poly(pb, poly3, 0);
-	polyarray_poly(pb, poly4, 4);
-	polyarray_print(pb, 1);
-	putchar('\n');
-	
-	PolyArray* pc = polyarray_sub(pa, pb, 16, 874);
-	polyarray_print(pc, 1);
-	
-	
-	polyarray_free(pa);
-	polyarray_free(pb);
+	PolyArray* pk = pub_key(sk, 16, 896);
+	printf("公钥\n");
+	polyarray_print(pk, 1);	
 	
 	return 0;
 }
