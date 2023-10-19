@@ -4,6 +4,7 @@
 
 #include "Poly.h"
 #include "PolyPairs.h"
+#include "PolyArray.h"
 #include "Key.h"
 #include "Enc.h"
 #include "Dec.h"
@@ -87,33 +88,11 @@ int main(int argc, char *argv[]) {
 	printf("∂‡œÓ Ω∞À\t");
 	poly_print(poly8, 1);	
 	
-	Poly* Sk = sk(15);
-	printf("sk\t\t");
-	poly_print(Sk, 1); 
-	
-	PolyPairs *Pk = pk(Sk, 16, 896);
-	printf("pk\n");
-	polypairs_print(Pk, 1); 
-	printf("\n");
-	
-	PolyPairs *Cta = ct(Pk, poly2, 16, 7, 896);
-	printf("Cta\n");
-	polypairs_print(Cta, 1); 
-	printf("\n");
-	
-	PolyPairs *Ctb = ct(Pk, poly8, 16, 7, 896);
-	printf("Ctb\n");
-	polypairs_print(Ctb, 1); 
-	printf("\n");
-	
-	PolyPairs* a_add_b = homo_add(Cta, Ctb, 16, 896);
-	printf("a_add_b\n");
-	polypairs_print(a_add_b, 1); 
-	printf("\n");
-	
-	Poly* M = m_dec(a_add_b, Sk, 16, 7, 896);
-	printf("M\t\t");
-	poly_print(M, 1);
+	PolyArray* pa = polyarray_create();
+	polyarray_poly(pa, poly1, 0);
+	polyarray_poly(pa, poly2, 1);
+	polyarray_print(pa, 1);
+	polyarray_free(pa);
 	
 	return 0;
 }
