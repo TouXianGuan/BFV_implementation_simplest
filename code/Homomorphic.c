@@ -10,11 +10,8 @@
 #include "Dec.h"
 #include "Homomorphic.h"
 
-PolyPairs* homo_add(PolyPairs* a, PolyPairs* b, int d, int q) {
-	Poly* c0 = poly_mod_add(a->poly0, b->poly0, d, q);
-	Poly* c1 = poly_mod_add(a->poly1, b->poly1, d, q);
-	
-	PolyPairs* c = polypairs_create(c0, c1);
+PolyArray* homo_add(PolyArray* a, PolyArray* b, int d, int q) {
+	PolyArray* c = polyarray_add(a, b, d, q);
 	
 	return c;
 }

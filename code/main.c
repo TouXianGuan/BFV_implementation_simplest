@@ -96,13 +96,21 @@ int main(int argc, char *argv[]) {
 	printf("公钥\n");
 	polyarray_print(pk, 1);	
 	
-	PolyArray* Ct = ct(pk, poly2, 16, 7, 896);
-	printf("密文\n");
-	polyarray_print(Ct, 1);	
+	PolyArray* m1 = ct(pk, poly2, 16, 7, 896);
+	printf("密文1\n");
+	polyarray_print(m1, 1);	
 	
-	Poly* M = m_dec(Ct, sk, 16, 7, 896);
-	printf("解密\t\t");
-	poly_print(M, 1);
+	PolyArray* m2 = ct(pk, poly8, 16, 7, 896);
+	printf("密文2\n");
+	polyarray_print(m2, 1);	
+	
+	PolyArray* m3 = homo_add(m1, m2, 16, 896);
+	printf("同态加\n");
+	polyarray_print(m3, 1);	
+	
+	Poly* M3 = m_dec(m3, sk, 16, 7, 896);
+	printf("同态加解密\n");
+	poly_print(M3, 1);	
 	
 	return 0;
 }

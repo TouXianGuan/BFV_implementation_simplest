@@ -45,16 +45,10 @@ Poly* ct1(PolyArray* pk, int d, int q, Poly* e2, Poly* u) {
 
 PolyArray* ct(PolyArray* pk, Poly* m, int d, int t, int q) {
 	Poly* u = poly_rand(d-1, 3);
-	printf("u\t\t");
-	poly_print(u, 1);
 	
 	Poly* e1 = poly_Gaussian(d-1, Gau);
-	printf("e1\t\t");
-	poly_print(e1, 1);
 	
 	Poly* e2 = poly_Gaussian(d-1, Gau);
-	printf("e2\t\t");
-	poly_print(e2, 1);
 	
 	PolyArray* Ct = polyarray_create();
 	polyarray_poly(Ct, ct0(pk, m, d, t, q, e1, u), 0);

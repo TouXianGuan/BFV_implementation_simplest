@@ -1,2 +1,2 @@
-//同态加法 
-PolyPairs* homo_add(PolyPairs* a, PolyPairs* b, int d, int q);
+// 同态加法 
+PolyArray* homo_add(PolyArray* a, PolyArray* b, int d, int q);
