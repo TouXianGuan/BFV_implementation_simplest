@@ -20,6 +20,7 @@ Poly* decryption(PolyArray* ct, Poly* s, int d, int t, int q) {
 			}
 			if(!poly3)	poly3 = poly_clone(tmp);
 			else	poly3 = poly_mod_add(poly3, tmp, d, q);
+			poly_print(poly3, 1);
 		}
 	}
 	
