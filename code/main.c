@@ -102,17 +102,14 @@ int main(int argc, char *argv[]) {
 	printf("密文2\n");
 	polyarray_print(m2, 1);	
 	
-	PolyArray* m3 = homo_add(m1, m2, 16, 896);
-	printf("同态加\n");
+	PolyArray* m3 = homo_mul(m1, m2, 16, 7, 896);
+	printf("同态乘\n");
 	polyarray_print(m3, 1);	
 	
-	Poly* M3 = m_dec(m3, sk, 16, 7, 896);
-	printf("同态加解密\n");
+	Poly* M3 = decryption(m3, sk, 16, 7, 896);
+	printf("解密\t\t");
 	poly_print(M3, 1);	
-		
-	PolyArray* mmul = polyarray_round_div(m1, 8.0, 896);
-	printf("多项式组近似系数除法\n");
-	polyarray_print(mmul, 1);
+	
 	
 	
 	

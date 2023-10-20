@@ -7,26 +7,23 @@
 #include "Enc.h"
 #include "Dec.h"
 
-Poly* ct0_add_ct1_mul_s(PolyArray* ct, Poly* s, int d, int q) {
-	//ct1*s
-	Poly *poly1 = poly_mod_mul(ct->polys[1], s, d, q);
+Poly* decryption(PolyArray* ct, Poly* s, int d, int t, int q) {
+	Poly* poly3 = NULL; 
+	Poly* tmp;
 	
-	//ct0+ct1*s
-	Poly *poly2 = poly_mod_add(poly1, ct->polys[0], d, q);
+	for(int i=0; i<ct->size; i++){
+		if(ct->polys[i]) {
+			tmp = ct->polys[i];
+			for(int j=0; j<i; j++)
+				tmp = poly_mod_mul(tmp, s, d, q);
+			if(!poly3)	poly3 = poly_clone(tmp);
+			else	poly3 = poly_mod_add(poly3, tmp, d, q);
+		}
+	}
 	
-	poly_free(poly1);
+	Poly* poly4 = poly_mod_round_div(poly3, (double)q/t, t);
 	
-	return poly2;
-}
-
-Poly* m_dec(PolyArray* ct, Poly* s, int d, int t, int q) {
-	//ct0+ct1*s 
-	Poly *poly1 = ct0_add_ct1_mul_s(ct, s, d, q);
+	poly_free(poly3);
 	
-	//(ct0+ct1*s)/(q/t)
-	Poly *poly2 = poly_mod_round_div(poly1, (double)q/t, t);
-	
-	poly_free(poly1);
-	
-	return poly2;
+	return poly4;
 }
