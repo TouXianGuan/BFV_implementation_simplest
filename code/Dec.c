@@ -9,13 +9,15 @@
 
 Poly* decryption(PolyArray* ct, Poly* s, int d, int t, int q) {
 	Poly* poly3 = NULL; 
-	Poly* tmp;
+	
+	int length = 0;
 	
 	for(int i=0; i<ct->size; i++){
-		if(ct->polys[i]) {
-			tmp = ct->polys[i];
-			for(int j=0; j<i; j++)
-				tmp = poly_mod_mul(tmp, s, d, q);
+		if(ct->polys[i]) {			
+			Poly* tmp = ct->polys[i];
+			for(int j=0; j<i; j++){
+					tmp = poly_mod_mul(tmp, s, d, q);
+			}
 			if(!poly3)	poly3 = poly_clone(tmp);
 			else	poly3 = poly_mod_add(poly3, tmp, d, q);
 		}

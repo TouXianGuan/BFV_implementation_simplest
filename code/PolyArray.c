@@ -97,9 +97,13 @@ PolyArray* polyarray_mul(PolyArray* pa1, PolyArray* pa2, int d, int t) {
 	PolyArray* pa3 = polyarray_create();
 	
 	for(int i=0; i<size; i++){
-		for(int j=0; j<size; j++){
-			if(pa1->polys[i] && pa2->polys[j])
-				polyarray_poly(pa3, poly_mod_sub(pa1->polys[i], pa2->polys[i], d, t), i+j);
+		if(pa1->polys[i]){
+			for(int j=0; j<size; j++){
+				if(pa2->polys[j]) {
+					if(!pa3->polys[i+j]) polyarray_poly(pa3, poly_mod_mul(pa1->polys[i], pa2->polys[j], d, t), i+j);
+					else poly_mod_add(pa3->polys[i+j], poly_mod_mul(pa1->polys[i], pa2->polys[j], d, t), d, t);
+				}
+			}
 		}
 	}
 	

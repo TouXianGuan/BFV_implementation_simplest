@@ -18,7 +18,7 @@ PolyArray* homo_add(PolyArray* a, PolyArray* b, int d, int q) {
 PolyArray* homo_mul(PolyArray* a, PolyArray*b, int d, int t, int q) {
 	PolyArray* pa3 = polyarray_mul(a, b, d, q);
 	
-	PolyArray* pa4 = polyarray_coe_mul(pa3, q/t, q);
+	PolyArray* pa4 = polyarray_round_div(pa3, (double)q/t, q);
 	
 	polyarray_free(pa3);
 	
