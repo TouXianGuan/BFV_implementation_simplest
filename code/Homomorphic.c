@@ -15,24 +15,12 @@ PolyArray* homo_add(PolyArray* a, PolyArray* b, int d, int q) {
 	return c;
 }
 
-PolyArray* homo_mul(PolyArray* a, PolyArray* b, int d, int t, int q) {
-	int size = (a->size >= b->size) ? a->size : b->size;
-	PolyArray* pa3 = polyarray_create();
+PolyArray* homo_mul(PolyArray* a, PolyArray*b, int d, int t, int q) {
+	PolyArray* pa3 = polyarray_mul(a, b, d, q);
 	
-	for(int i=0; i<size; i++){
-		if(a->polys[i]){
-			for(int j=0; j<size; j++){
-				if(b->polys[j]) {
-					Poly* tmp = poly_mul(a->polys[i], b->polys[j]);
-					tmp = poly_mod_poly(tmp, d);
-					if(!pa3->polys[i+j]) polyarray_poly(pa3, tmp, i+j);
-					else poly_add(pa3->polys[i+j], tmp);
-				}
-			}
-		}
-	}
+	//PolyArray* pa4 = polyarray_round_div(pa3, (double)q/t, q);
 	
-	PolyArray* pa4 = polyarray_round_div(pa3, (double)q/t, q);
+	//polyarray_free(pa3);
 	
-	return pa4;
+	return pa3;
 } 

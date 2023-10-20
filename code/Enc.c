@@ -3,7 +3,7 @@
 #include <time.h>
 #include <math.h>
 
-#define Gau 0
+#define Gau 4
 
 #include "Poly.h"
 #include "PolyArray.h"
