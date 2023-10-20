@@ -6,7 +6,6 @@
 #define Gau 4
 
 #include "Poly.h"
-#include "PolyPairs.h"
 #include "PolyArray.h"
 #include "Key.h"
 
