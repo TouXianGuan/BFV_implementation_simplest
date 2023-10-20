@@ -97,18 +97,22 @@ PolyArray* polyarray_mul(PolyArray* pa1, PolyArray* pa2, int d, int t) {
 	PolyArray* pa3 = polyarray_create();
 	
 	for(int i=0; i<size; i++){
-		if(pa1->polys[i] && pa2->polys[i])
-			polyarray_poly(pa3, poly_mod_mul(pa1->polys[i], pa2->polys[i], d, t), i);
-		else if(pa1->polys[i] && !pa2->polys[i]) {
-			Poly* tmp = poly_create(pa1->polys[i]->degree);
-			polyarray_poly(pa3, poly_mod_mul(pa1->polys[i], tmp, d, t), i);
-			poly_free(tmp);
+		for(int j=0; j<size; j++){
+			if(pa1->polys[i] && pa2->polys[j])
+				polyarray_poly(pa3, poly_mod_sub(pa1->polys[i], pa2->polys[i], d, t), i+j);
 		}
-		else if(!pa1->polys[i] && pa2->polys[i]) {
-			Poly* tmp = poly_create(pa2->polys[i]->degree);
-			polyarray_poly(pa3, poly_mod_mul(tmp, pa2->polys[i], d, t), i);
-			poly_free(tmp);
-		}
+	}
+	
+	return pa3;
+}
+
+PolyArray *polyarray_coe_mul(PolyArray *pa, int a, int t) {
+	int size = pa->size;
+	PolyArray* pa3 = polyarray_create();
+	
+	for(int i=0; i<size; i++){
+		if(pa->polys[i])
+			polyarray_poly(pa3, poly_mod_coefficient_mul(pa->polys[i], a, t), i);
 	}
 	
 	return pa3;

@@ -87,7 +87,6 @@ int main(int argc, char *argv[]) {
 	}
 	printf("多项式八\t");
 	poly_print(poly8, 1);	
-	
 	Poly *sk = pri_key(16);
 	printf("私钥\t");
 	poly_print(sk, 1);
@@ -111,6 +110,10 @@ int main(int argc, char *argv[]) {
 	Poly* M3 = m_dec(m3, sk, 16, 7, 896);
 	printf("同态加解密\n");
 	poly_print(M3, 1);	
+		
+	PolyArray* mmul = polyarray_coe_mul(m1, 3, 896);
+	printf("多项式组系数乘法\n");
+	polyarray_print(mmul, 1);
 	
 	return 0;
 }
