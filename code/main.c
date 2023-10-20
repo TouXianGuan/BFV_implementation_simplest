@@ -111,9 +111,11 @@ int main(int argc, char *argv[]) {
 	printf("同态加解密\n");
 	poly_print(M3, 1);	
 		
-	PolyArray* mmul = polyarray_coe_mul(m1, 3, 896);
-	printf("多项式组系数乘法\n");
+	PolyArray* mmul = polyarray_round_div(m1, 8.0, 896);
+	printf("多项式组近似系数除法\n");
 	polyarray_print(mmul, 1);
+	
+	
 	
 	return 0;
 }

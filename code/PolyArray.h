@@ -27,3 +27,6 @@ PolyArray* polyarray_mul(PolyArray* pa1, PolyArray* pa2, int d, int t);
 
 // 多项式组系数相乘 
 PolyArray *polyarray_coe_mul(PolyArray *pa, int a, int t); 
+
+// 多项式组近似系数除法
+PolyArray *polyarray_round_div(PolyArray *pa, double a, int t); 

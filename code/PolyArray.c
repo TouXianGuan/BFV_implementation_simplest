@@ -117,3 +117,15 @@ PolyArray *polyarray_coe_mul(PolyArray *pa, int a, int t) {
 	
 	return pa3;
 }
+
+PolyArray *polyarray_round_div(PolyArray *pa, double a, int t) {
+	int size = pa->size;
+	PolyArray* pa3 = polyarray_create();
+	
+	for(int i=0; i<size; i++){
+		if(pa->polys[i])
+			polyarray_poly(pa3, poly_mod_round_div(pa->polys[i], a, t), i);
+	}
+	
+	return pa3;
+}
