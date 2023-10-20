@@ -10,8 +10,8 @@
 #include "Homomorphic.h"
 
 int main(int argc, char *argv[]) {
-	int c1[] = {3, 0, 2, 0, 0, 0, 0, 0, -3, 0, 0, 0, 0, 0, 0, 0};
-	int c2[] = {0, 3, 2, 1, 0};
+	int c1[] = {3, 0, 0, 0, 0, 0, 0, 0, -3, 0, 0, 0, 0, 0, 0, 0};
+	int c2[] = {0, 1, 0, 0, 0};
 	int i, len;
 	
 	srand(time(NULL) * 10000); 
@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
 	printf("多项式二\t");
 	poly_print(poly2, 1);
 	
-	int d = 16, t = 7, q = 128 * t;
+	int d = 16, t = 7, q = 1024 * t;
 	
 	Poly *sk = pri_key(16);
 	printf("私钥\t");

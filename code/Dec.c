@@ -8,19 +8,19 @@
 #include "Dec.h"
 
 Poly* decryption(PolyArray* ct, Poly* s, int d, int t, int q) {
-	Poly* poly3 = NULL; 
+	Poly* poly3 = poly_create(1);
 	
 	int length = 0;
 	
 	for(int i=0; i<ct->size; i++){
 		if(ct->polys[i]) {			
-			Poly* tmp = ct->polys[i];
+			Poly* tmp = NULL;
 			for(int j=0; j<i; j++){
-					tmp = poly_mod_mul(tmp, s, d, q);
+				if(!tmp) tmp = poly_clone(s);
+				else tmp = poly_mod_mul(tmp, s, d, q); 
 			}
-			if(!poly3)	poly3 = poly_clone(tmp);
-			else	poly3 = poly_mod_add(poly3, tmp, d, q);
-			poly_print(poly3, 1);
+			if(!tmp) poly3 = poly_mod_add(poly3, ct->polys[i], d, q);
+			else poly3 = poly_mod_add(poly3, poly_mod_mul(ct->polys[i], tmp, d, q) , d, q);
 		}
 	}
 	
